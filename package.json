@@ -1,0 +1,22 @@
+{
+  "name": "iello",
+  "version": "1.0.0",
+  "description": "API for Iello",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://andrea9671@bitbucket.org/androiarch/iello-api.git"
+  },
+  "keywords": [
+    "Iello",
+    "API",
+    "nodejs",
+    "express"
+  ],
+  "author": "RAEA",
+  "license": "MIT",
+  "homepage": "https://bitbucket.org/androiarch/iello-api#readme"
+}
