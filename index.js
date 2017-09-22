@@ -52,34 +52,34 @@ function checkParameterMiddleware(req, res, next)
 			radius : raggio,
 			limit : limit
 		};
-		next();
 
+		next();
 	}
 }
 
 function parkingTest(req, res, next)
 {
-			list_parking = [{
-				        "lat" : 52.0239430,
-				        "lon" : 36.5478996
-				      },
-				      {
-				        "lat" : 12.9454535,
-				        "lon" : 10.4434095
-				      },
-				      {
-				        "lat" : 32.4545435,
-				        "lon" : 40.3294328
-				      }];
+	list_parking = [
+						{
+							"lat" : 43.729729729729726,
+							"lon" : 12.641886092558165
+						},
+						{
+							"lat" : 43.72613261159351,
+							"lon" : 12.63678789138794
+						},
+						{
+							"lat" : 43.726744627828545,
+							"lon" : 12.636817395687103
+						}
+					];
 
-		// responseJSON.parking = lista dei parcheggi
-		return sendResponseMessage(res, 200, "OK", {
-			"parking-count" : 3,
-			"parking" : list_parking
-		});
+	// responseJSON.parking = lista dei parcheggi
+	return sendResponseMessage(res, 200, "OK", {
+		"parking-count" : 3,
+		"parking" : list_parking
+	});
 }
-
-app.get("/parking", checkParameterMiddleware , parkingTest);
 
 function sendResponseMessage(res, httpCode, status, message)
 {
@@ -89,6 +89,8 @@ function sendResponseMessage(res, httpCode, status, message)
 		message : message
 	});
 }
+
+app.get("/parking", checkParameterMiddleware , parkingTest);
 
 app.listen(3000, function(err){
 	console.log("Pronto sulla porta 3000");
