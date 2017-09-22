@@ -28,6 +28,8 @@ http://indirizzo:porta/parking?lat=valore_lat&lon=valore_long
     }
 }
 ```
+I parcheggi sono ordinati dal più vicino al più lontano.
+
 
 ### Codice Risposta HTTP: 400 (Bad Request)
 Indica che sono stati passati parametri invalidi o mancano dei parametri, il server risponde con la seguente struttra json:
@@ -44,5 +46,11 @@ URL : http://localhost:3000/parking o http://localhost:3000/parking?lat=34.65007
 
 
 ## Parametri variabili
-Richiedere tot numero massimo di parcheggi entro un certo raggio 
-http://indirizzo:porta/parking?lat=valore_lat&lon=valore_long&radius=distance_km&limit=5 
+- radius indica il raggio di ricerca
+    ```
+    http://indirizzo:porta/parking?lat=valore_lat&lon=valore_long&radius=distanza_metri     
+    ```
+- limit indica il numero di parcheggi massimi da ricercare
+    ```
+    http://indirizzo:porta/parking?lat=valore_lat&lon=valore_long&limit=valore_numerico     
+    ```

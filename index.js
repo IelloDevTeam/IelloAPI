@@ -1,6 +1,10 @@
 var admin = require("firebase-admin");
 var express = require("express");
 
+// aggiunta libreria per il permitero
+
+var latlng = require("./selectionPerimeter");
+
 var serviceAccount = require("./piattaforme-firebase-key.json");
 var app = express();
 
@@ -81,6 +85,14 @@ function parkingTest(req, res, next)
 	});
 }
 
+function filterParkingMiddleware(req, res, next)
+{
+	var data = res.locals.data;
+	var coordinateLimite = latlng.perimetro(data.lat, data.lon, data.radius);
+	
+	
+}
+
 function sendResponseMessage(res, httpCode, status, message)
 {
 	console.log("HTTP-Status: " + httpCode + " Status: " + status + " Message: " + message);
@@ -90,7 +102,7 @@ function sendResponseMessage(res, httpCode, status, message)
 	});
 }
 
-app.get("/parking", checkParameterMiddleware , parkingTest);
+app.get("/parking", checkParameterMiddleware , filterParkingMiddleware);
 
 app.listen(3000, function(err){
 	console.log("Pronto sulla porta 3000");

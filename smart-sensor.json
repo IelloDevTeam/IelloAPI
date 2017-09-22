@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "smartsensor-27e8c",
+  "private_key_id": "656f358bc90e33c3ec51057e6f6d8a8a6fc499a1",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDylNW8bxj0sHT5\nIucxiQ0pMT4iheSLAlsc/M1Yh0NndWK9CCrENyP6zIf97WKCr2qJ9bxQY245aAKA\n3aDL5PiIe1Cq8ZZx76+9zSN84z4nRXW78PrD3HWn6lQ+1Fw0qlTvmLJIN+Zbyvhq\ni3xVlengDlOA75g4h6gwbu3I8tDsw/2jMWHHsp2lExK5o4swvP0ViDcXTVgFRG5+\n3NIQeMg+1MR5QSOIj0mF7RanAmx3ysNhMe97quaSvIr6b9mAGyeavo1Q9213g+33\nrNL9r3B9l7nSRoES/75sfrkUtk7UfzM/Rt+3hdfUsZxQuHXcRS3pICvL/hwBptsF\njo0aCNPJAgMBAAECggEAMGLcJD8zxuDooCYkX+bSq3gBSREUdl7UrjpFumYWnY0W\nUhbOMv+9q0G/UXjXeLJFKboMoytGGejDcRFkCK+GHHEedM6F//l7gDwqGzfXlq09\n7+xAFK/FfyYYQkUJFE8ybG00iH+v8PjSJqxmc0rZEOJCqToBTqtOcsS5pOa8IjGN\nXBxWkqgbJJTSwdGMbEXr4g66KYLOfWzTp5aNxQngLn1pnfTBAew63XViym58YYBP\nwTxuxQ+EGx8XG6qZM8hTQEWvtg0aUc+x6PqmJdrjWXbklLjckmNqpQ8pZCuFMyaT\ndGPQuF8UDWSuRm/TmVHGxJxKxO3drZBy0moPgX6oBQKBgQD68rr/SlchJij7j1tJ\nqFOzAyfZCE9av3MjF2SdbmTZi8bV+Y/l8m8qT+JQIr9Jgbu7+SgM7GvmHITBam9B\nZV9ox4Esz4SDKCpTK5UGpJbpHwltkpDTvAfeXjEKNlhZAyFyVjzudlVYOOoo/8yB\nbs3jazSCur7xMZBa34adEom1rQKBgQD3dvxpD15C5GgKMri9G6hUkuaMjgpe+FlU\nXYMdysY8T7Skw8Ra0PHV7RL2G6lZ7CQL+SsD5UkN/cQVbwKKVu6zcLsyOatY+lK9\nwVXo3IoTGu3sTCLydaagremaTKryBSs8ZkFRQQlmzTzL04CVNHxEs8igwTdcctGz\ngQXjR4RCDQKBgQC21Qow3XTFjgvl2/hineT9U5tAoLFQKJQ2SODhYoDPjur7Eqwo\nmI0tgq4cPHSplX+14D2xzL6AFN8UG/ua5cSxjkkq4LZm6GiN1/7nrBrXFenEjzg9\nS41gEbgg/J85mvJPX01dX5GmiTDxVg0lcBlJS94iMPTUvYuy6ZAl+E+ksQKBgDIQ\nvZJXzJ9F7JKbnmqMDOtHaSNonUqHfjMmVB+T5bVP/uESxkgFW9gHBb4K7KFHuCc/\n+ubn3XbaL3CSq/XnDpX5KbZImpT+1/yR/9qDu9+PpDEZWjypdtOtO8S+3Bro1s16\ndp6ExO0qerFWEf6dxsJziRSU4qluhWSGpvVLg8OFAoGAJN7Gblkwhw5OthIhuHIm\nhI6gdWiSZNOpk+zGAb2FQHNZ83/1NSpjO49HJNB1yzvWOI2iBJSL3CPz8bBSqir8\nymn9ga4LhcGWqIsZSP3ESHZZOfizVmmePojPVnMsAOynRddWCWPfHldho7zX2n2Y\nstuPBxWSMEOTCpSuEMAgyrE=\n-----END PRIVATE KEY-----\n",
+  "client_email": "firebase-adminsdk-fu4s9@smartsensor-27e8c.iam.gserviceaccount.com",
+  "client_id": "104710522378735930201",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://accounts.google.com/o/oauth2/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-fu4s9%40smartsensor-27e8c.iam.gserviceaccount.com"
+}
