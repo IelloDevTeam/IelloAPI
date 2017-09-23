@@ -1,3 +1,7 @@
+const PORT = 3000;
+const RAGGIO_DEFAULT = 500; 	// 500 metri
+const LIMIT_DEFAULT = 20;	// Limite parcheggi 20
+
 var admin = require("firebase-admin");
 var express = require("express");
 
@@ -13,11 +17,12 @@ admin.initializeApp({
 	databaseURL: "https://piattaforme-ca3e9.firebaseio.com/"
 });
 
+var db = admin.database();
 
 function checkParameterMiddleware(req, res, next)
 {
-	var raggio = 5; //raggio di default
-	var limit = 10;
+	var raggio = RAGGIO_DEFAULT; //raggio di default
+	var limit = LIMIT_DEFAULT;
 	var lat = undefined;
 	var lon = undefined;
 
@@ -41,27 +46,19 @@ function checkParameterMiddleware(req, res, next)
 		}
 		else
 			console.log("Raggio impostato di default");
-	
-		if("limit" in req.query)
-		{
-			limit = req.query.limit;
-			console.log("Limite lista parcheggi: " + req.query.limit);
-		}
-		else
-			console.log("Limite lista parcheggi di default");
 
 		res.locals.data =  {
 			lat : lat,
 			lon : lon,
-			radius : raggio,
-			limit : limit
+			radius : raggio
 		};
 
 		next();
 	}
 }
 
-function parkingTest(req, res, next)
+// funzione di test
+/* function parkingTest(req, res, next)
 {
 	list_parking = [
 						{
@@ -83,14 +80,52 @@ function parkingTest(req, res, next)
 		"parking-count" : 3,
 		"parking" : list_parking
 	});
-}
+} */
 
 function filterParkingMiddleware(req, res, next)
 {
 	var data = res.locals.data;
+	console.log(data.radius);
 	var coordinateLimite = latlng.perimetro(data.lat, data.lon, data.radius);
-	
-	
+
+	var minLon = coordinateLimite[3];
+	var maxLon = coordinateLimite[1];
+	var minLat = coordinateLimite[2];
+	var maxLat = coordinateLimite[0];
+
+	var parking = [];
+
+	var ref = db.ref("/ segnalazioni");
+
+	ref.orderByChild("longitudine")
+			.startAt(minLon)
+			.endAt(maxLon)
+			.on("value", function(snapshot) {
+		// appena ricevo i dati rimuovo la callback.
+		ref.off();
+
+		// per ogni risultato filtro sulla latitudine
+		snapshot.forEach(function(child){
+			var lat = child.val().latitudine;
+			if(lat >= minLat && lat <= maxLat)
+			{
+				// aggiungo un parcheggio ai risultati
+				parking.push({
+					latitudine : lat,
+					longitudine : child.val().longitudine
+				});
+			}
+		});
+
+		sendResponseMessage(res, 200, "OK", {
+			"parking-count" : parking.length,
+			"parking" : parking
+		});
+
+	}, function(error){
+		console.log(error);
+		sendResponseMessage(res, 500, "ERROR", "Database Error");
+	});
 }
 
 function sendResponseMessage(res, httpCode, status, message)
@@ -104,6 +139,6 @@ function sendResponseMessage(res, httpCode, status, message)
 
 app.get("/parking", checkParameterMiddleware , filterParkingMiddleware);
 
-app.listen(3000, function(err){
-	console.log("Pronto sulla porta 3000");
+app.listen(PORT, function(err){
+	console.log("Pronto sulla porta " + PORT);
 });

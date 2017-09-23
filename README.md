@@ -43,14 +43,18 @@ URL : http://localhost:3000/parking o http://localhost:3000/parking?lat=34.65007
 }
 ```
 
+### Codice Risposta HTTP: 500
+Indica un'errore del server, tipicamente dovuto al database.
 
+```json
+{
+    "status": "ERROR",
+    "message": "Database Error"
+}
+```
 
 ## Parametri variabili
-- radius indica il raggio di ricerca
+- **radius**: indica il raggio di ricerca in metri, di __default è impostato a 500 metri__.
     ```
     http://indirizzo:porta/parking?lat=valore_lat&lon=valore_long&radius=distanza_metri     
-    ```
-- limit indica il numero di parcheggi massimi da ricercare
-    ```
-    http://indirizzo:porta/parking?lat=valore_lat&lon=valore_long&limit=valore_numerico     
     ```

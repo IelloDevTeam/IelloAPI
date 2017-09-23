@@ -10,7 +10,7 @@ admin.initializeApp({
 var db = admin.database();
 var ref = db.ref("/valori");
 
-for(var i = 0; i < 4; i++)
+/*for(var i = 0; i < 4; i++)
 {
     var n1 = random(50, 1);
     var n2 = random(50, 1);
@@ -20,11 +20,11 @@ for(var i = 0; i < 4; i++)
         n2 : n2,
         key : n1 + "_" + n2       
     });
-}
+}*/
 
 
 
-ref.orderByChild("key").on("child_added", function(snapshot) {
+ref.orderByChild("n1").startAt(25.405324523).endAt(40.45403423).on("child_added", function(snapshot) {
   console.log(snapshot.key + " n1 " + snapshot.val().n1 + " n2 " + snapshot.val().n2);
 });
 
