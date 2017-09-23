@@ -95,7 +95,7 @@ function filterParkingMiddleware(req, res, next)
 
 	var parking = [];
 
-	var ref = db.ref("/ segnalazioni");
+	var ref = db.ref("/posti");
 
 	ref.orderByChild("longitudine")
 			.startAt(minLon)
