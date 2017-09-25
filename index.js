@@ -1,4 +1,4 @@
-const PORT = 3000;
+const PORT = 4000;
 const RAGGIO_DEFAULT = 500; 	// 500 metri
 const LIMIT_DEFAULT = 20;	// Limite parcheggi 20
 
@@ -33,16 +33,23 @@ function checkParameterMiddleware(req, res, next)
 		{
 			console.log("Lat :" + req.query.lat);
 			console.log("Lon :" + req.query.lon); 
-			lat = req.query.lat;
-			lon = req.query.lon;
+			if(req.query.lat.trim() && req.query.lon.trim() && !isNaN(req.query.lat) && !isNaN(req.query.lon))
+			{
+				lat = req.query.lat;
+				lon = req.query.lon;
+			} else
+				return sendResponseMessage(res, 400, "ERROR", "Invalid Latitude or Longitude Parameter");
 		} else
-			return sendResponseMessage(res, 400, "ERROR", "Missing Lat and Lon Parameters");
+			return sendResponseMessage(res, 400, "ERROR", "Missing Latitude or Longitude Parameter");
 
 		// controllo parametri opzionali
 		if("radius" in req.query)
 		{
-			raggio = req.query.radius;
-			console.log("Raggio impostato: " + req.query.radius);
+			if(!isNaN(req.query.radius) && req.query.radius.trim())
+			{
+				raggio = req.query.radius;			
+				console.log("Raggio impostato: " + req.query.radius);
+			}
 		}
 		else
 			console.log("Raggio impostato di default");
