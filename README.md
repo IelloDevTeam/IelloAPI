@@ -10,7 +10,7 @@ http://indirizzo:porta/parking?lat=valore_lat&lon=valore_long
 {
     "status": "OK",
     "message": {
-        "parking-count": 3,
+        "parking_count": 3,
         "parking": [
             {
                 "lat": 43.729729729729726,
