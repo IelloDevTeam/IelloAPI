@@ -6,8 +6,6 @@ const ECCENT = Math.sqrt(1.0 - (RATIO * RATIO));
 const COM = 0.5 * ECCENT;
 const PI_2 = Math.PI / 2.0;
 
-var exports = module.exports = {};
-
 // funzione che trasforma i gradi in radianti
 Math.radians = function(degrees) {
   return degrees * Math.PI / 180;
@@ -61,35 +59,48 @@ var yToLat = function(y)
     }
 
 // funzione che calcola il perimetro selezionato
-exports.perimetro = function(lat, longi, r){
+module.exports = {
+    perimetro : function(lat, longi, r)
+    {
     
-    var perimetro = [];
-    
-    // coordinate di partenza
-    var y = latToY(lat);//latitudine 
-    var x = lonToX(longi);//longitudine 
+        var perimetro = [];
+        
+        let radius = parseInt(r);
 
-    // perimetro desiderato
-    // latitudine
-    var dis_Y_NORD = y + r; // linea di 5 km, 2,5 a nord e 2,5 a sud del punto
-    var dis_Y_SUD = y - r;
-    // longitudine
-    var dis_X_EST = x + r; 
-    var dis_X_OVEST = x - r;      
-    
-    // perimetro finale
-    // latitudine
-    var LAT_SUD = yToLat(dis_Y_SUD); // latitudine (2,5 km a sud del punto)
-    var LAT_NORD = yToLat(dis_Y_NORD); // latitudine (2,5 km a nord del punto)
-    // longitudine
-    var LONG_EST = xToLon(dis_X_EST);
-    var LONG_OVEST = xToLon(dis_X_OVEST);
-    
-    // metto i risultati nell'array 
-    perimetro.push(LAT_NORD);
-    perimetro.push(LONG_EST);
-    perimetro.push(LAT_SUD);
-    perimetro.push(LONG_OVEST);
-    
-    return perimetro;
-}
+        let x = lonToX(longi);
+        let y = latToY(lat);
+
+        // console.log("X: " + x + "\nY: " + y);
+
+        let Y_NORD = y + radius;
+        let Y_SUD = y - radius;
+
+        let X_EST = x + radius;
+        let X_OVEST = x - radius;
+        
+        /* console.log("Max Y nord: " + (y + radius));
+        console.log("Max X est: " + (x + radius));
+        console.log("Min X ovest: " + X_OVEST);
+        console.log("Min Y sud: " + Y_SUD);
+        console.log("----------\n"); */
+
+        var LAT_SUD = yToLat(Y_SUD);
+        var LAT_NORD = yToLat(Y_NORD); 
+        var LONG_EST = xToLon(X_EST);
+        var LONG_OVEST = xToLon(X_OVEST);
+        
+        // metto i risultati nell'array 
+        perimetro.push(LAT_NORD);
+        perimetro.push(LONG_EST);
+        perimetro.push(LAT_SUD);
+        perimetro.push(LONG_OVEST);
+        
+        return perimetro;
+    }
+};
+
+/*var p = require("./selectionPerimeter");
+
+p.perimetro(43.529629, 13.259408, 600000);
+console.log("----------------------\n");
+p.perimetro(43.529629, 13.259408, 100);*/

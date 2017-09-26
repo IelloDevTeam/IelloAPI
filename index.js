@@ -7,7 +7,7 @@ var express = require("express");
 
 // aggiunta libreria per il permitero
 
-var latlng = require("./selectionPerimeter");
+var latlng = require("./selection-perimeter");
 
 var serviceAccount = require("./piattaforme-firebase-key.json");
 var app = express();
@@ -64,36 +64,13 @@ function checkParameterMiddleware(req, res, next)
 	}
 }
 
-// funzione di test
-/* function parkingTest(req, res, next)
-{
-	list_parking = [
-						{
-							"lat" : 43.729729729729726,
-							"lon" : 12.641886092558165
-						},
-						{
-							"lat" : 43.72613261159351,
-							"lon" : 12.63678789138794
-						},
-						{
-							"lat" : 43.726744627828545,
-							"lon" : 12.636817395687103
-						}
-					];
-
-	// responseJSON.parking = lista dei parcheggi
-	return sendResponseMessage(res, 200, "OK", {
-		"parking-count" : 3,
-		"parking" : list_parking
-	});
-} */
-
 function filterParkingMiddleware(req, res, next)
 {
-	var data = res.locals.data;
-	console.log(data.radius);
-	var coordinateLimite = latlng.perimetro(data.lat, data.lon, data.radius);
+	let latitudine = res.locals.data.lat;
+	let longitudine = res.locals.data.lon;
+	let raggio = res.locals.data.radius;
+
+	var coordinateLimite = latlng.perimetro(latitudine, longitudine, raggio);
 
 	var minLon = coordinateLimite[3];
 	var maxLon = coordinateLimite[1];
@@ -103,6 +80,10 @@ function filterParkingMiddleware(req, res, next)
 	var parking = [];
 
 	var ref = db.ref("/posti");
+
+	//console.log(data.radius);
+	//console.log("Min lon: " + minLon + " Max Lon: " + maxLon);
+	//console.log("Min lat: " + minLat + " Max Lat: " + maxLat);
 
 	ref.orderByChild("longitudine")
 			.startAt(minLon)
@@ -125,7 +106,7 @@ function filterParkingMiddleware(req, res, next)
 		});
 
 		sendResponseMessage(res, 200, "OK", {
-			"parking-count" : parking.length,
+			"parking_count" : parking.length,
 			"parking" : parking
 		});
 
