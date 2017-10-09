@@ -6,8 +6,9 @@ var admin = require("firebase-admin");
 var express = require("express");
 
 // aggiunta libreria per il permitero
-
 var latlng = require("./selection-perimeter");
+// lib geocoding
+var geocoding = require("./maps-geocoding");
 
 var serviceAccount = require("./piattaforme-firebase-key.json");
 var app = express();
@@ -100,7 +101,8 @@ function filterParkingMiddleware(req, res, next)
 				// aggiungo un parcheggio ai risultati
 				parking.push({
 					latitudine : lat,
-					longitudine : child.val().longitudine
+					longitudine : child.val().longitudine,
+					street_address : child.val().street_address
 				});
 			}
 		});
@@ -124,6 +126,7 @@ function sendResponseMessage(res, httpCode, status, message)
 		message : message
 	});
 }
+
 
 app.get("/parking", checkParameterMiddleware , filterParkingMiddleware);
 
