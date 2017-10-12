@@ -95,13 +95,16 @@ function filterParkingMiddleware(req, res, next)
 
 		// per ogni risultato filtro sulla latitudine
 		snapshot.forEach(function(child){
-			var lat = child.val().latitudine;
-			if(lat >= minLat && lat <= maxLat)
+			let parkLat = child.val().latitudine;
+			let parkLon = child.val().longitudine;
+			if(parkLat >= minLat && parkLat <= maxLat)
 			{
 				// aggiungo un parcheggio ai risultati
+				let dist = latlng.distance(latitudine, longitudine, parkLat, parkLon);
 				parking.push({
-					latitudine : lat,
-					longitudine : child.val().longitudine,
+					latitudine : parkLat,
+					longitudine : parkLon,
+					distance : Math.trunc((dist * 1000)),
 					street_address : child.val().street_address
 				});
 			}
