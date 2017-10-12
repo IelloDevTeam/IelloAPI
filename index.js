@@ -107,6 +107,11 @@ function filterParkingMiddleware(req, res, next)
 					distance : Math.trunc((dist * 1000)),
 					street_address : child.val().street_address
 				});
+
+				/* Ordinamento in base alla distanza */
+				parking.sort(function(elem1, elem2){
+					return elem1.distance - elem2.distance;
+				});
 			}
 		});
 
