@@ -1,60 +1,76 @@
-## Interrogazione API
+# **Documentazione API**
 
-### URL Base
-Risponse con un JSON contente i parcheggi più vicini in un raggio di default.
-http://indirizzo:porta/parking?lat=valore_lat&lon=valore_long
+Lista API
+=========
 
-## Esempio risposta JSON
-### Codice Risposta HTTP: 200 (OK), quando il codice http è 200 si ottiene una risposta in json con la seguente struttura:
-```json
+/parking
+--------
+
+| URI | Http Method  | Description                                                             |
+|-------------|----------|-------------------------------------------------------------------------|
+| /parking         | GET | Restituisce i parcheggi trovati in base alla propria posizione inviata. |
+
+| Field     | Type    | Required  | Description                                       | Default Value |
+|-----------|---------|-----------|---------------------------------------------------|---------------|
+| latitude  | Double  | Si        | Latitudine della propria posizione                | N/A           |
+| longitude | Double  | Si        | Longitudine della propria posizione               | N/A           |
+| radius    | Integer | Opzionale | Raggio in metri a partire dalla propria posizione | 500          |
+
+Esempio di richiesta
+Supponiamo di voler fare una richiesta per i parcheggi presenti in raggio di 500m attorno a Lecce.
+
+    curl -H "Content-type: application/json" -H "Accept: application/json" -X GET "http://cloudpi.webhop.me:4000/parking?lat=40.353988&lon=18.173937"
+
+##### Risposta:
+
+    HTTP/1.1 200 OK
+    X-Powered-By: Express
+    Content-Type: application/json; charset=utf-8
+    Content-Length: 2491
+    Date: Fri, 13 Oct 2017 10:08:35 GMT
+    Connection: keep-alive
+    
+
+````json
 {
-    "status": "OK",
-    "message": {
-        "parking_count": 3,
-        "parking": [
-            {
-                "lat": 43.729729729729726,
-                "lon": 12.641886092558165
-            },
-            {
-                "lat": 43.72613261159351,
-                "lon": 12.63678789138794
-            },
-            {
-                "lat": 43.726744627828545,
-                "lon": 12.636817395687103
-            }
-        ]
-    }
+  "status": "OK",
+  "message": {
+    "parking_count": 5,
+    "parking": [
+      {
+        "latitudine": 40.35236,
+        "longitudine": 18.17303,
+        "distance": 196,
+        "street_address": "Via e. alvino, 73100 Lecce LE, Italy"
+      },
+      {
+        "latitudine": 40.35222,
+        "longitudine": 18.17318,
+        "distance": 206,
+        "street_address": "Via Vito Fazzi, 6, 73100 Lecce LE, Italy"
+      },
+      {
+        "latitudine": 40.3521328,
+        "longitudine": 18.1750238,
+        "distance": 225,
+        "street_address": "Via G. Marconi, 16, 73100 Lecce LE, Italy"
+      },
+      {
+        "latitudine": 40.3540536,
+        "longitudine": 18.1767357,
+        "distance": 237,
+        "street_address": "Viale Felice Cavallotti, 19, 73100 Lecce LE, Italy"
+      },
+      {
+        "latitudine": 40.3561691,
+        "longitudine": 18.1738794,
+        "distance": 242,
+        "street_address": "Via Marco Aurelio, 2, 73100 Lecce LE, Italy"
+      }
+    ]
+  }
 }
-```
-I parcheggi sono ordinati dal più vicino al più lontano.
+````
 
+L'oggetto JSON restitutito contiene lo status delle riposta, in questo caso "OK", e "message", ovvero il messaggio di riposta inviato dal server, il contenuto di questo dipende dallo status.
 
-### Codice Risposta HTTP: 400 (Bad Request)
-Indica che sono stati passati parametri invalidi o mancano dei parametri, il server risponde con la seguente struttra json:
-Esempio: Mancanza di parametri latitudine o longitudine
-URL : http://localhost:3000/parking o http://localhost:3000/parking?lat=34.650075675
-
-```json
-{
-    "status": "ERROR",
-    "message": "Missing Lat and Lon Parameters"
-}
-```
-
-### Codice Risposta HTTP: 500
-Indica un'errore del server, tipicamente dovuto al database.
-
-```json
-{
-    "status": "ERROR",
-    "message": "Database Error"
-}
-```
-
-## Parametri variabili
-- **radius**: indica il raggio di ricerca in metri, di __default è impostato a 500 metri__.
-    ```
-    http://indirizzo:porta/parking?lat=valore_lat&lon=valore_long&radius=distanza_metri     
-    ```
