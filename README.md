@@ -1,9 +1,16 @@
 # **Documentazione API**
 
-Lista API
+## Indice contenuti
+1. [Lista API](#lista-api)
+    1.1. [GET: /parking](#get-parking)
+    1.2. [DELETE: /parking](#delete-parkingid)
+2. [Example2](#example2)
+3. [Third Example](#third-example)
+
+### Lista API
 =========
 
-/parking
+GET: /parking
 --------
 
 | URI | Http Method  | Description                                                             |
@@ -16,8 +23,8 @@ Lista API
 | longitude | Double  | Si        | Longitudine della propria posizione               | N/A           |
 | radius    | Integer | Opzionale | Raggio in metri a partire dalla propria posizione | 500          |
 
-Esempio di richiesta
-Supponiamo di voler fare una richiesta per i parcheggi presenti in raggio di 500m attorno a Lecce.
+Esempio di richiesta <br>
+- I parcheggi presenti in un raggio di 500m attorno a Lecce.
 
     curl -H "Content-type: application/json" -H "Accept: application/json" -X GET "http://cloudpi.webhop.me:4000/parking?lat=40.353988&lon=18.173937"
 
@@ -72,5 +79,49 @@ Supponiamo di voler fare una richiesta per i parcheggi presenti in raggio di 500
 }
 ````
 
-L'oggetto JSON restitutito contiene lo status delle riposta, in questo caso "OK", e "message", ovvero il messaggio di riposta inviato dal server, il contenuto di questo dipende dallo status.
+L'oggetto JSON restitutito contiene lo status delle riposta, in questo caso "OK", e "message", ovvero il messaggio di riposta inviato dal server, il contenuto di questo dipende dallo status.<br>
+Una richiesta di questo tipo invece, produrrà una risposta di errore, in quanto uno dei due parametri obbligatori è mancante.
+````
+curl -H "Content-type: application/json" -H "Accept: application/json" -X GET "http://cloudpi.webhop.me:4000/parking?lat=40.353988"
+````
 
+##### Risposta:
+
+````
+HTTP/1.1 400 Bad Request
+X-Powered-By: Express
+Content-Type: application/json; charset=utf-8
+Content-Length: 2491
+Date: Fri, 13 Oct 2017 10:08:35 GMT
+Connection: keep-alive
+````
+
+````json
+{
+  "status":"ERROR",
+  "message":"Missing Latitude or Longitude Parameter"
+}
+````
+
+
+DELETE: /parking/{:id}
+--------
+| URI | Http Method  | Description                                                             |
+|-------------|----------|-------------------------------------------------------------------------|
+| /parking/\{:id\}         | DELETE | Elimina un parcheggio corrispondente all'id. |
+
+| Parameter    | Type    | Required  | Description                                       | Default Value |
+|-----------|---------|-----------|---------------------------------------------------|---------------|
+| id  | String  | Si        | Id del parcheggio da eliminare.                | N/A           |
+
+````
+curl -H "Content-type: application/json" -H "Accept: application/json" -X DELETE "http://cloudpi.webhop.me:4000/parking/-KuiWVXyrGm46Y45hd21"
+````
+
+##### Risposta:
+````json
+{
+  "status":"ERROR",
+  "message":"Missing Latitude or Longitude Parameter"
+}
+````

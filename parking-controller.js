@@ -98,6 +98,7 @@ exports.getAvailableParking = function(req, res, next)
 				// calcolo distanza tra il parcheggio e la posizione dell'utente
 				let dist = coordUtil.distance(latitudine, longitudine, parkLat, parkLon);
 				parking.push({
+					id : child.key,
 					latitudine : parkLat,
 					longitudine : parkLon,
 					distance : Math.trunc((dist * 1000)),
@@ -120,6 +121,21 @@ exports.getAvailableParking = function(req, res, next)
 		console.log(error);
 		sendResponseMessage(res, 500, "ERROR", "Database Error");
 	});
+}
+
+/* Funzione per eliminazione parcheggio */
+exports.delete = function(req, res, next)
+{
+	let parkId = req.params.id;
+
+	db.ref("/posti").child(parkId).remove()
+		.then(function() {
+    		sendResponseMessage(res, 200, "OK", "Park deleted");
+  		})
+  		.catch(function(error) {
+    		console.log("Error during deleting parking with id: " + parkId);
+			sendResponseMessage(res, 500, "ERROR", "Error during deleting of parking");
+  		});
 }
 
 /* Funzione per inviare una risposta HTTP */
