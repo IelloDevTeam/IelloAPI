@@ -122,6 +122,21 @@ exports.getAvailableParking = function(req, res, next)
 	});
 }
 
+/* Funzione per eliminazione parcheggio */
+exports.delete = function(req, res, next)
+{
+	let parkId = req.params.id;
+
+	db.ref("/posti").child(parkId).remove()
+		.then(function() {
+    		sendResponseMessage(res, 200, "OK", "Park deleted");
+  		})
+  		.catch(function(error) {
+    		console.log("Error during deleting parking with id: " + parkId);
+			sendResponseMessage(res, 500, "ERROR", "Error during deleting of parking");
+  		});
+}
+
 /* Funzione per inviare una risposta HTTP */
 function sendResponseMessage(res, httpCode, status, message)
 {

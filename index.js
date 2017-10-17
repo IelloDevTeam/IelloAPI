@@ -10,6 +10,10 @@ app.get("/parking",
 	parkingController.checkParameter,
 	parkingController.getAvailableParking);
 
+app.delete("/parking/:id",
+	//checkAuth,
+	parkingController.delete);
+
 app.listen(PORT, function(err){
 	console.log("Pronto sulla porta " + PORT);
 });
