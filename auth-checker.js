@@ -1,6 +1,7 @@
 let keymanager = require('./apikey-manager');
 
 
+/* Controllo autorizzazione da admin */
 exports.checkAdminAuth = function(req, res, next)
 {
 	if(!req.headers.authorization)

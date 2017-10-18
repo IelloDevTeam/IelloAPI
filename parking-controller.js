@@ -19,7 +19,7 @@ admin.initializeApp({
 let db = admin.database();
 
 /* Funzione middleware per controllare i parametri ricevuti */
-exports.checkParameter = function(req, res, next)
+exports.checkQueryParameter = function(req, res, next)
 {
 	var raggio = RAGGIO_DEFAULT; //raggio di default
 	var limit = LIMIT_DEFAULT;
@@ -120,6 +120,50 @@ exports.getAvailableParking = function(req, res, next)
 	}, function(error){
 		console.log(error);
 		sendResponseMessage(res, 500, "ERROR", "Database Error");
+	});
+}
+
+exports.checkBody = function(req, res, next)
+{
+	let body = req.body;
+
+	if(body.hasOwnProperty('latitude') && body.hasOwnProperty('longitude'))
+	{
+		if(body.latitude.toString().trim() && body.longitude.toString().trim() && !isNaN(body.latitude) && !isNaN(body.longitude))
+		{
+			res.locals.data =  {
+				lat : body.latitude,
+				lon : body.longitude
+			};
+			next();
+		}
+		else
+			return sendResponseMessage(res, 400, "Bad Request", "Invalid Latitude or Longitude");
+	}
+	else
+		return sendResponseMessage(res, 400, "Bad Request", "Invalid JSON");
+}
+
+
+/* Funzione per inserimento parcheggio */
+exports.create = function(req, res, next)
+{
+	/* Recupero dati validati */
+	let lat = res.locals.data.lat;
+	let lon = res.locals.data.lon;
+
+	geocoding.reverseGeocoding(lat, lon, function(results){
+		if(results.length > 0)
+		{
+			let address = results[0].formatted_address;
+			db.ref("/segnalazioni").push().set({
+				latitude : lat,
+				longitude : lon,
+				street_address : address
+			}, function(err){
+				if(!err) console.log(err);
+			});
+		}
 	});
 }
 
