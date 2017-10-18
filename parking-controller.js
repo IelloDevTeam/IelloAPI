@@ -160,10 +160,16 @@ exports.create = function(req, res, next)
 				latitude : lat,
 				longitude : lon,
 				street_address : address
-			}, function(err){
-				if(!err) console.log(err);
+			})
+			.then(function(){
+				return sendResponseMessage(res, 200, "Success", "Parking report registered");
+			})
+			.catch(function(error){
+				return sendResponseMessage(res, 500, "Error", "Parking reporting failed");
 			});
 		}
+		else
+			return sendResponseMessage(res, 500, "Error", "Unable to identify the parking position");
 	});
 }
 

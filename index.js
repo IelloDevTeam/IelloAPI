@@ -24,19 +24,21 @@ app.use(bodyParser.urlencoded({
 var parkingController = require('./parking-controller');
 var authChecker = require('./auth-checker');
 
+let router = express.Router();
 
-app.get("/parking",
-	parkingController.checkQueryParameter,
-	parkingController.getAvailableParking);
+router.route("/parking")
+	.get(parkingController.checkQueryParameter,
+		 parkingController.getAvailableParking)
 
-app.post("/parking",
-	authChecker.checkAdminAuth,
-	parkingController.checkBody,
-	parkingController.create);
+	.post(authChecker.checkAdminAuth,
+		  parkingController.checkBody,
+		  parkingController.create);
+	
+router.delete("/parking/:id",
+		authChecker.checkAdminAuth,
+		parkingController.delete);
 
-app.delete("/parking/:id",
-	authChecker.checkAdminAuth,
-	parkingController.delete);
+app.use("/iello/v1", router)
 
 app.listen(PORT, function(){
 	console.log("Listend on: " + PORT);
