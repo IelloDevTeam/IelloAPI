@@ -18,59 +18,13 @@ admin.initializeApp({
 /* Firebase Database */
 let db = admin.database();
 
-/* Funzione middleware per controllare i parametri ricevuti */
-exports.checkQueryParameter = function(req, res, next)
-{
-	var raggio = RAGGIO_DEFAULT; //raggio di default
-	var limit = LIMIT_DEFAULT;
-	var lat = undefined;
-	var lon = undefined;
-
-	if(typeof req.query !== 'undefined')
-	{
-		// controllo parametri obbligatori
-		if("lat" in req.query && "lon" in req.query)
-		{
-			console.log("Lat :" + req.query.lat);
-			console.log("Lon :" + req.query.lon); 
-			if(req.query.lat.trim() && req.query.lon.trim() && !isNaN(req.query.lat) && !isNaN(req.query.lon))
-			{
-				lat = req.query.lat;
-				lon = req.query.lon;
-			} else
-				return sendResponseMessage(res, 400, "ERROR", "Invalid Latitude or Longitude Parameter");
-		} else
-			return sendResponseMessage(res, 400, "ERROR", "Missing Latitude or Longitude Parameter");
-
-		// controllo parametri opzionali
-		if("radius" in req.query)
-		{
-			if(!isNaN(req.query.radius) && req.query.radius.trim())
-			{
-				raggio = req.query.radius;			
-				console.log("Raggio impostato: " + req.query.radius);
-			}
-		}
-		else
-			console.log("Raggio impostato di default");
-
-		res.locals.data =  {
-			lat : lat,
-			lon : lon,
-			radius : raggio
-		};
-
-		next();
-	}
-}
-
 /* Funzione middleware per inviare la lista dei parcheggi disponibili */
-exports.getAvailableParking = function(req, res, next)
+exports.get = function(req, res, next)
 {
 	/* Recupero dati validati da checkParameter */
-	let latitudine = res.locals.data.lat;
-	let longitudine = res.locals.data.lon;
-	let raggio = res.locals.data.radius;
+	let latitudine = req.query.latitude;
+	let longitudine = req.query.longitude;
+	let raggio = ("radius" in req.query) ? req.query.radius : RAGGIO_DEFAULT;
 
 	/* Calcolo cordinate limite per un certo raggio */
 	let coordinateLimite = coordUtil.perimetro(latitudine, longitudine, raggio);
@@ -123,34 +77,13 @@ exports.getAvailableParking = function(req, res, next)
 	});
 }
 
-exports.checkBody = function(req, res, next)
-{
-	let body = req.body;
-
-	if(body.hasOwnProperty('latitude') && body.hasOwnProperty('longitude'))
-	{
-		if(body.latitude.toString().trim() && body.longitude.toString().trim() && !isNaN(body.latitude) && !isNaN(body.longitude))
-		{
-			res.locals.data =  {
-				lat : body.latitude,
-				lon : body.longitude
-			};
-			next();
-		}
-		else
-			return sendResponseMessage(res, 400, "Bad Request", "Invalid Latitude or Longitude");
-	}
-	else
-		return sendResponseMessage(res, 400, "Bad Request", "Invalid JSON");
-}
-
 
 /* Funzione per inserimento parcheggio */
 exports.create = function(req, res, next)
 {
 	/* Recupero dati validati */
-	let lat = res.locals.data.lat;
-	let lon = res.locals.data.lon;
+	let lat = req.body.latitude;
+	let lon = req.body.longitude;
 
 	geocoding.reverseGeocoding(lat, lon, function(results){
 		if(results.length > 0)

@@ -117,6 +117,7 @@ DELETE: /parking/{:id}
 ````
 curl -H "Content-type: application/json" -H "Accept: application/json" -X DELETE "http://cloudpi.webhop.me:4000/parking/-KuiWVXyrGm46Y45hd21"
 ````
+Dove "-KuiWVXyrGm46Y45hd21" è l'id del parcheggio da eliminare.
 
 ##### Risposta:
 ````json
