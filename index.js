@@ -20,25 +20,10 @@ app.use(bodyParser.urlencoded({
     cert: nginx_certificate
 };*/
 
-/* Richiesta controller parcheggi */
-var parkingController = require('./parking-controller');
-var authChecker = require('./auth-checker');
+/* Router parcheggi */
+let parkingRouter = require('./api/routes/parking-routes');
 
-let router = express.Router();
-
-router.route("/parking")
-	.get(parkingController.checkQueryParameter,
-		 parkingController.getAvailableParking)
-
-	.post(authChecker.checkAdminAuth,
-		  parkingController.checkBody,
-		  parkingController.create);
-	
-router.delete("/parking/:id",
-		authChecker.checkAdminAuth,
-		parkingController.delete);
-
-app.use("/iello/v1", router)
+app.use("/iello/v1", parkingRouter());
 
 app.listen(PORT, function(){
 	console.log("Listend on: " + PORT);

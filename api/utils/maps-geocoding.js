@@ -2,7 +2,6 @@
 const API_KEY = "AIzaSyCZksjE7PEbGwiK0Sr7RwPyAqOJY2wM9O4";
 
 var https = require("https");
-var querystring = require('querystring');
 
 var exports = module.exports = {};
 

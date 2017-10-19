@@ -33,10 +33,10 @@ exports.addNewApiKey = function(role)
 
 function readFromJson()
 {
-	return require('./keys.json');
+	return require('../config/keys.json');
 }
 
 function writeJson(json)
 {
-	fs.writeFileSync('./keys.json', JSON.stringify(json), "UTF-8");
+	fs.writeFileSync('../config/keys.json', JSON.stringify(json), "UTF-8");
 }

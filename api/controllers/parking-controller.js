@@ -4,14 +4,14 @@ const LIMIT_DEFAULT = 20;	// Limite parcheggi 20
 
 var exports = module.exports = {}
 
-/* Richiesta della libreria per i calcoli sulle coordinate */
-let coordUtil 	= require("./coord-util");
-/* Richiesta della librerira per il geocoding */
-let geocoding 	= require("./maps-geocoding");
 let admin 		= require("firebase-admin");
+/* Richiesta della libreria per i calcoli sulle coordinate */
+let coordUtil 	= require("../utils/coord-util");
+/* Richiesta della librerira per il geocoding */
+let geocoding 	= require("../utils/maps-geocoding");
 
 admin.initializeApp({
-	credential: admin.credential.cert(require("./piattaforme-firebase-key.json")),
+	credential: admin.credential.cert(require("../config/piattaforme-firebase-key.json")),
 	databaseURL: "https://piattaforme-ca3e9.firebaseio.com/"
 });
 
