@@ -5,6 +5,9 @@ var https = require("https");
 
 var exports = module.exports = {};
 
+/** Funzione per reverse geocoding.
+	Dati latitudine e longitudine, tramite le API google maps, effettua
+	un reverse geocoding per ottenere l'indirizzo assocciato alla posizione **/
 exports.reverseGeocoding = function(lat, lon, callback)
 {
 	let url = "https://maps.googleapis.com/maps/api/geocode/json?latlng=";

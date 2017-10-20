@@ -3,6 +3,7 @@ let uuidv4 = require("uuid/v4");
 
 var exports = module.exports = {};
 
+/** Funzione che restituisce il ruolo associato ad una api key **/
 exports.getRole = function(apikey)
 {
 	var json = readFromJson();

@@ -1,31 +1,21 @@
 var Joi = require('joi');
 
+/* Schema validazione header */
 var headerSchema = Joi.object({
-	Authorization : Joi.string().required()
+	authorization : Joi.string().required()
 });
 
 var exports = module.exports = {};
 
+/** Express middleware, valida la presenza o meno dell'header di autenticazione. **/
 exports.validateAuthHeader = function(req, res, next)
 {
 	let ret = Joi.validate(req.headers, headerSchema, {allowUnknown: true, abortEarly: false});
 	if(ret.error != undefined)
-	{
-		let errMsg = [];
-		for (let index in ret.error.details)
-			errMsg.push(ret.error.details[index].message);
-		return sendResponseMessage(res, 401, "Unauthorized", errMsg);
-	}
+		return res.status(401).json({
+			status : "Unauthorized",
+			message : "Invalid Api Key."
+		});
 	else
 		next();
-}
-
-/* Funzione per inviare una risposta HTTP */
-function sendResponseMessage(res, httpCode, status, message)
-{
-	console.log("HTTP-Status: " + httpCode + " Status: " + status + " Message: " + message);
-	return res.status(httpCode).json({
-		status : status,
-		message : message
-	});
 }
