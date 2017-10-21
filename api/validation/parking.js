@@ -25,7 +25,7 @@ var exports = module.exports = {};
 exports.validateQueryParkingSchema = function(req, res, next){
 
 	let ret = Joi.validate(req.query, queryParkingSchema, {abortEarly: false});
-	let errors = collectErrors(ret);
+	let errors = collectErrors(ret.error);
 
 	if(errors != undefined)
 		return res.status(400).json({
@@ -40,7 +40,7 @@ exports.validateQueryParkingSchema = function(req, res, next){
 exports.validateCreateParkingSchema = function(req, res, next)
 {
 	let ret = Joi.validate(req.body, createParkingSchema, {abortEarly: false});
-	let errors = collectErrors(ret);
+	let errors = collectErrors(ret.error);
 
 	if(errors != undefined)
 		return res.status(400).json({
@@ -55,7 +55,7 @@ exports.validateCreateParkingSchema = function(req, res, next)
 exports.validateDeleteParkingSchema = function(req, res, next)
 {
 	let ret = Joi.validate(req.params, deleteParkingSchema, {abortEarly: false});
-	let errors = collectErrors(ret);
+	let errors = collectErrors(ret.error);
 
 	if(errors != undefined)
 		return res.status(400).json({
@@ -72,8 +72,8 @@ function collectErrors(errors)
 	if(errors != undefined)
 	{
 		let errmsg = [];
-		for (let index in ret.error.details)
-			errmsg.push(unescape(ret.error.details[index].message));
+		for (let index in errors.details)
+			errmsg.push(errors.details[index].message);
 		return errmsg;
 	}
 	return undefined;

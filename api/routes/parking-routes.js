@@ -1,7 +1,8 @@
 
 var express = require("express");
 
-module.exports = function(){
+module.exports = function() {
+	
 	let validator		= require('../validation/parking');
 	let authValidator	= require('../validation/authentication');
 	let parking 		= require('../controllers/parking-controller');
@@ -25,12 +26,20 @@ module.exports = function(){
 			  parking.create);
 
 	/** Route per /parking/:id
-		DELETE: 4 middleware, come metodo POST precendente **/
+		DELETE: 4 middleware, come metodo POST precedente **/
 	router.route("/parking/:id")
 		.delete(authValidator.validateAuthHeader,
 			  	authManager.checkRole("admin"),
 				validator.validateDeleteParkingSchema,
 				parking.delete);
+
+	/** Route per nuova segnalazione 
+		POST: 4 middleware **/
+	router.route("/parking/report")
+		.post(authValidator.validateAuthHeader,
+			  authManager.checkRole("admin", "user"),
+			  validator.validateCreateParkingSchema,
+			  parking.report);
 
 	return router;
 };

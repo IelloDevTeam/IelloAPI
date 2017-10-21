@@ -1,5 +1,6 @@
 let fs = require('fs');
 let uuidv4 = require("uuid/v4");
+let path = require('path');
 
 var exports = module.exports = {};
 
@@ -24,12 +25,19 @@ exports.addNewApiKey = function(role)
 
 	// elimino vecchia chiave se presente
 	if(oldKey != undefined)
-		delete apikeys[key];
+		delete apikeys[oldKey];
 
 	// genero nuova chiave per quel ruolo.
 	let newKey = uuidv4();
-	apikeys[newKey] = role;
+	apikeys[(newKey.replace('-', ''))] = role;
 	writeJson(apikeys);
+
+	return newKey;
+}
+
+exports.getKeysRole = function()
+{
+	return readFromJson();
 }
 
 function readFromJson()
@@ -39,5 +47,5 @@ function readFromJson()
 
 function writeJson(json)
 {
-	fs.writeFileSync('../config/keys.json', JSON.stringify(json), "UTF-8");
+	fs.writeFileSync(path.join(__dirname, '../config/keys.json'), JSON.stringify(json), "UTF-8");
 }

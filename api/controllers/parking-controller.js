@@ -18,7 +18,7 @@ admin.initializeApp({
 /* Firebase Database */
 let db = admin.database();
 
-/* Funzione middleware per inviare la lista dei parcheggi disponibili */
+/** Express middleware per inviare la lista dei parcheggi disponibili **/
 exports.get = function(req, res, next)
 {
 	/* Recupero dati validati da checkParameter */
@@ -78,8 +78,8 @@ exports.get = function(req, res, next)
 }
 
 
-/* Funzione per inserimento parcheggio */
-exports.create = function(req, res, next)
+/** Express Middleware per inserimento parcheggio **/
+exports.create = function create(req, res, next)
 {
 	/* Recupero dati validati */
 	let lat = req.body.latitude;
@@ -106,7 +106,7 @@ exports.create = function(req, res, next)
 	});
 }
 
-/* Funzione per eliminazione parcheggio */
+/** Express Middleware per cancellazione parcheggio **/
 exports.delete = function(req, res, next)
 {
 	let parkId = req.params.id;
@@ -119,6 +119,12 @@ exports.delete = function(req, res, next)
     		console.log("Error during deleting parking with id: " + parkId);
 			sendResponseMessage(res, 500, "ERROR", "Error during deleting of parking");
   		});
+}
+
+/** Express middleware per creazione nuova segnalazione **/
+exports.report = function(req, res, next)
+{
+	exports.create(req, res, next);
 }
 
 /* Funzione per inviare una risposta HTTP */
