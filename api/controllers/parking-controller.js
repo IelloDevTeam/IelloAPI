@@ -53,8 +53,8 @@ exports.get = function(req, res, next)
 				let dist = coordUtil.distance(latitudine, longitudine, parkLat, parkLon);
 				parking.push({
 					id : child.key,
-					latitudine : parkLat,
-					longitudine : parkLon,
+					latitude : parkLat,
+					longitude : parkLon,
 					distance : Math.trunc((dist * 1000)),
 					street_address : child.val().street_address
 				});
@@ -124,7 +124,29 @@ exports.delete = function(req, res, next)
 /** Express middleware per creazione nuova segnalazione **/
 exports.report = function(req, res, next)
 {
-	exports.create(req, res, next);
+	/* Recupero dati validati */
+        let lat = req.body.latitude;
+        let lon = req.body.longitude;
+
+        geocoding.reverseGeocoding(lat, lon, function(results){
+                if(results.length > 0)
+                {
+                        let address = results[0].formatted_address;
+                        db.ref("/segnalazioni").push().set({
+                                latitudine : lat,
+                                longitudine : lon,
+                                street_address : address
+                        })
+                        .then(function(){
+                                return sendResponseMessage(res, 200, "Success", "Parking report registered");
+                        })
+                        .catch(function(error){
+                                return sendResponseMessage(res, 500, "Error", "Parking reporting failed");
+                        });
+                }
+                else
+                        return sendResponseMessage(res, 500, "Error", "Unable to identify the parking position");
+        });
 }
 
 /* Funzione per inviare una risposta HTTP */

@@ -50,36 +50,36 @@ Esempio di richiesta <br>
     "parking": [
       {
         "id": "-KvaXq2PA_Yb3T4rJgAy",
-        "latitudine": 40.35236,
-        "longitudine": 18.17303,
+        "latitude": 40.35236,
+        "longitude": 18.17303,
         "distance": 196,
         "street_address": "Via e. alvino, 73100 Lecce LE, Italy"
       },
       {
         "id": "-KvaXq3Lw8KNw5bwYOWs",
-        "latitudine": 40.35222,
-        "longitudine": 18.17318,
+        "latitude": 40.35222,
+        "longitude": 18.17318,
         "distance": 206,
         "street_address": "Via Vito Fazzi, 6, 73100 Lecce LE, Italy"
       },
       {
         "id": "-KvaXq2W0dx8L4DZCZ6L",
-        "latitudine": 40.3521328,
-        "longitudine": 18.1750238,
+        "latitude": 40.3521328,
+        "longitude": 18.1750238,
         "distance": 225,
         "street_address": "Via G. Marconi, 16, 73100 Lecce LE, Italy"
       },
       {
         "id": "-KvaXq3XMJ_st9JBz_x6",
-        "latitudine": 40.3540536,
-        "longitudine": 18.1767357,
+        "latitude": 40.3540536,
+        "longitude": 18.1767357,
         "distance": 237,
         "street_address": "Viale Felice Cavallotti, 19, 73100 Lecce LE, Italy"
       },
       {
         "id": "-KvaXq3MABuOC3KxYSXf",
-        "latitudine": 40.3561691,
-        "longitudine": 18.1738794,
+        "latitude": 40.3561691,
+        "longitude": 18.1738794,
         "distance": 242,
         "street_address": "Via Marco Aurelio, 2, 73100 Lecce LE, Italy"
       }
