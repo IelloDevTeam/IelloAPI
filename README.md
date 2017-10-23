@@ -30,7 +30,7 @@
 Esempio di richiesta <br>
 - I parcheggi presenti in un raggio di 500m attorno a Lecce.
 
-    curl -H "Content-type: application/json" -H "Accept: application/json" -X GET "http://localhost:4000/iello/v1/parking?latitude=40.353988&longitude=18.173937"
+    curl -H "Content-type: application/json" -H "Accept: application/json" -X GET "http://cloudpi.webhop.me:4000/iello/v1/parking?latitude=40.353988&longitude=18.173937"
 
 ##### Risposta:
 
@@ -44,7 +44,7 @@ Esempio di richiesta <br>
 
 ````json
 {
-  "status": "OK",
+  "status": "Success",
   "message": {
     "parking_count": 5,
     "parking": [
@@ -88,10 +88,10 @@ Esempio di richiesta <br>
 }
 ````
 
-L'oggetto JSON restitutito contiene lo status delle riposta, in questo caso "OK", e "message", ovvero il messaggio di riposta inviato dal server, il contenuto di questo dipende dallo status.<br>
+L'oggetto JSON restitutito contiene lo status delle riposta, in questo caso "Success", e "message", ovvero il messaggio di riposta inviato dal server, il contenuto di questo dipende dallo status.<br>
 Una richiesta di questo tipo invece, produrrà una risposta di errore, in quanto uno dei due parametri obbligatori è mancante.
 ````
-curl -H "Content-type: application/json" -H "Accept: application/json" -X GET "http://localhost:4000/iello/v1/parking?latitude=40.353988"
+curl -H "Content-type: application/json" -H "Accept: application/json" -X GET "http://cloudpi.webhop.me:4000/iello/v1/parking?latitude=40.353988"
 ````
 
 ##### Risposta:
@@ -127,7 +127,7 @@ Corpo della richiesta:
 ````
 
 ````
-curl -H "Content-type: application/json" -H "Accept: application/json" -H "Authorization: <admim_api_key>" -X POST -d '{ "latitude" : <lat>, "longitude" : <long> }' "http://localhost:4000/iello/v1/parking"
+curl -H "Content-type: application/json" -H "Accept: application/json" -H "Authorization: <admim_api_key>" -X POST -d '{ "latitude" : <lat>, "longitude" : <long> }' "http://cloudpi.webhop.me:4000/iello/v1/parking"
 ````
 
 ##### Risposta:
@@ -204,7 +204,7 @@ Connection: keep-alive
 
 ````json
 {
-  "status": "OK",
+  "status": "Success",
   "message": "Park deleted"
 }
 ````

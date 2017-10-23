@@ -66,7 +66,7 @@ exports.get = function(req, res, next)
 			}
 		});
 
-		sendResponseMessage(res, 200, "OK", {
+		sendResponseMessage(res, 200, "Success", {
 			"parking_count" : parking.length,
 			"parking" : parking
 		});
@@ -89,7 +89,7 @@ exports.create = function create(req, res, next)
 		if(results.length > 0)
 		{
 			let address = results[0].formatted_address;
-			db.ref("/segnalazioni").push().set({
+			db.ref("/posti").push().set({
 				latitude : lat,
 				longitude : lon,
 				street_address : address
@@ -113,7 +113,7 @@ exports.delete = function(req, res, next)
 
 	db.ref("/posti").child(parkId).remove()
 		.then(function() {
-    		sendResponseMessage(res, 200, "OK", "Park deleted");
+    		sendResponseMessage(res, 200, "Success", "Park deleted");
   		})
   		.catch(function(error) {
     		console.log("Error during deleting parking with id: " + parkId);
