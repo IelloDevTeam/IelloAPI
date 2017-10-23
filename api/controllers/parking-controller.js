@@ -90,8 +90,8 @@ exports.create = function create(req, res, next)
 		{
 			let address = results[0].formatted_address;
 			db.ref("/posti").push().set({
-				latitude : lat,
-				longitude : lon,
+				latitudine : lat,
+				longitudine : lon,
 				street_address : address
 			})
 			.then(function(){
