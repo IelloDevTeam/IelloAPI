@@ -1,14 +1,15 @@
 # **Documentazione API**
 
 ## Indice contenuti
-1. [Lista API](#lista-api)
-    1.1. [GET: /parking](#parking)
-    1.2. [DELETE: /parking](#delete-parkingid)
-2. [Example2](#example2)
-3. [Third Example](#third-example)
+1. Lista API
+    * [GET: /parking](#get-parking)
+    * [POST: /parking](#post-parking)
+    * [DELETE: /parking](#parkingid)
+    * [POST: /parking/report](#parkingreport)
+2. [Autorizzazione](#autorizzazione)
 
-### Lista API
-=========
+Lista API
+========
 
 /parking
 --------
@@ -30,7 +31,10 @@
 Esempio di richiesta <br>
 - I parcheggi presenti in un raggio di 500m attorno a Lecce.
 
-    curl -H "Content-type: application/json" -H "Accept: application/json" -X GET "http://cloudpi.webhop.me:4000/iello/v1/parking?latitude=40.353988&longitude=18.173937"
+````
+curl -H "Content-type: application/json" -H "Accept: application/json" -X GET 
+"http://cloudpi.webhop.me:4000/iello/v1/parking?latitude=40.353988&longitude=18.173937"
+````
 
 ##### Risposta:
 
@@ -91,7 +95,8 @@ Esempio di richiesta <br>
 L'oggetto JSON restitutito contiene lo status delle riposta, in questo caso "Success", e "message", ovvero il messaggio di riposta inviato dal server, il contenuto di questo dipende dallo status.<br>
 Una richiesta di questo tipo invece, produrrà una risposta di errore, in quanto uno dei due parametri obbligatori è mancante.
 ````
-curl -H "Content-type: application/json" -H "Accept: application/json" -X GET "http://cloudpi.webhop.me:4000/iello/v1/parking?latitude=40.353988"
+curl -H "Content-type: application/json" -H "Accept: application/json" -X GET
+"http://cloudpi.webhop.me:4000/iello/v1/parking?latitude=40.353988"
 ````
 
 ##### Risposta:
@@ -127,7 +132,8 @@ Corpo della richiesta:
 ````
 
 ````
-curl -H "Content-type: application/json" -H "Accept: application/json" -H "Authorization: <admim_api_key>" -X POST -d '{ "latitude" : <lat>, "longitude" : <long> }' "http://cloudpi.webhop.me:4000/iello/v1/parking"
+curl -H "Content-type: application/json" -H "Accept: application/json" -H "Authorization: <admim_api_key>"
+ -X POST -d '{ "latitude" : <lat>, "longitude" : <long> }' "http://cloudpi.webhop.me:4000/iello/v1/parking"
 ````
 
 ##### Risposta:
@@ -189,7 +195,8 @@ Permette l'eliminazione di un parcheggio esistente. È necessaria una chiave di 
 
 Per l'autenticazione basta aggiungere l'header "Authorization" e la relativa chiave. "-KuiWVXyrGm46Y45hd21" è l'id del parcheggio da eliminare.
 ````
-curl -H "Content-type: application/json" -H "Accept: application/json" -H "Authorization: <admim_api_key>" -X DELETE "http://cloudpi.webhop.me:4000/iello/v1/parking/-KuiWVXyrGm46Y45hd21"
+curl -H "Content-type: application/json" -H "Accept: application/json" -H "Authorization: <admim_api_key>" 
+-X DELETE "http://cloudpi.webhop.me:4000/iello/v1/parking/-KuiWVXyrGm46Y45hd21"
 ````
 
 ##### Risposta:
@@ -224,7 +231,7 @@ Permette di segnalare un parcheggio, la differenza con la creazione di un parche
 Alcune richieste necessitano di autenticazione tramite una chiave, inviata tramite l'header http "Authorization".
 Il server risponde nei seguenti modi in caso di problemi di autorizzazione.
 
-<strong>Se l'header Authorization non viene inviato, il server risponde nel seguente modo: </strong>
+**Se l'header Authorization non viene inviato, il server risponde nel seguente modo:**
 ````
 HTTP/1.1 401 Unauthorized
 X-Powered-By: Express
@@ -241,7 +248,7 @@ Connection: keep-alive
 }
 ````
 
-<strong> In caso di autenticazione non riuscita, o nel caso in cui non si dispongano dei permessi sufficenti per effettuare l'operazione, il server risponde nel seguente modo: </strong> 
+**In caso di autenticazione non riuscita, o nel caso in cui non si dispongano dei permessi sufficenti per effettuare l'operazione, il server risponde nel seguente modo:**
 ````
 HTTP/1.1 403 Forbidden
 X-Powered-By: Express
