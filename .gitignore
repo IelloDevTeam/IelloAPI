@@ -1,0 +1,11 @@
+#Esclusione delle dipendenze installate
+node_modules/
+
+#Esclusione certificati
+ssl/
+
+#Esclusione file di configurazione privati
+api/config/keys.json	#chiavi di autenticazione
+api/config/piattaforme-firebase-key.json #chiave firebase
+
+
