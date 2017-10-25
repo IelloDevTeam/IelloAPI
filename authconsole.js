@@ -1,3 +1,12 @@
+/**
+ * Console API KEY
+ * ===================
+ * IelloDevTeam
+ * ===================
+ * Console per interagire con il manager delle API Key, permettendo
+ * di creare nuove chiavi e di visulizzare quelle esistenti
+ */
+ 
 var keymanager = require('./api/auth/apikey-manager');
 var readline = require('readline');
 var menu;

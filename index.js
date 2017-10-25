@@ -1,3 +1,11 @@
+/**
+ * Index
+ * ===================
+ * IelloDevTeam
+ * ===================
+ * Script main, avvia expresse in uno specifico path,
+ * inizializzando i vari router.
+ */
 const PORT = 4000;
 
 var fs 			= require("fs");

@@ -1,3 +1,11 @@
+/**
+ * Authentication Validator
+ * ===================
+ * IelloDevTeam
+ * ===================
+ * Contiene un'middleware che valida l'header http, in fase
+ * di pre-autenticazione.
+ */
 var Joi = require('joi');
 
 /* Schema validazione header */

@@ -1,4 +1,11 @@
-
+/**
+ * Parking Routes
+ * ===================
+ * IelloDevTeam
+ * ===================
+ * Definisce gli endpoint delle API validi, concatenando vari middleware per
+ * ogni endpoint.
+ */
 var express = require("express");
 
 module.exports = function() {

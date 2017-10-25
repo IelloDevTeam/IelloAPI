@@ -1,4 +1,13 @@
-
+/**
+ * Coords Utility
+ * ===================
+ * IelloDevTeam
+ * ===================
+ * Funzioni utili per i calcoli relativi alle coordinate,
+ * in particolare esporta due funzioni, quella per il calcolo della
+ * distanza da un punto ad un altro e il calcolo dei quattro punti cardinali
+ * dati un raggio e una posizione.
+ */
 const R_MAJOR = 6378137.0;
 const R_MINOR = 6356752.3142;
 const RATIO = R_MINOR / R_MAJOR;

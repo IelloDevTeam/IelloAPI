@@ -1,6 +1,12 @@
-/* Costanti */
+/**
+ * Parking Controller
+ * ===================
+ * IelloDevTeam
+ * ===================
+ * Controller per la gestione delle api relative a /parking,
+ * contiene i vari middleware.
+ */
 const RAGGIO_DEFAULT = 500; 	// 500 metri
-const LIMIT_DEFAULT = 20;	// Limite parcheggi 20
 
 var exports = module.exports = {}
 

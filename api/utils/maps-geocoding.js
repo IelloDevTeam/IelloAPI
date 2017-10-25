@@ -1,4 +1,12 @@
-
+/**
+ * Maps Geocoding
+ * ===================
+ * IelloDevTeam
+ * ===================
+ * Raccolta delle funzioni utili alla geolocalizzazione, in particolare
+ * viene implementata la funzione di reverse geocoding, tramite le 
+ * API Google Maps
+ */
 const API_KEY = "AIzaSyCZksjE7PEbGwiK0Sr7RwPyAqOJY2wM9O4";
 
 var https = require("https");

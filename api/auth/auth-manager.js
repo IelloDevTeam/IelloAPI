@@ -1,3 +1,11 @@
+/**
+ * Manager Autenticazione
+ * ===================
+ * IelloDevTeam
+ * ===================
+ * Manager per l'autenticazione, in particolare contiene il middleware,
+ * che controlla i ruoli concessi o meno.
+ */
 
 var exports = module.exports = {};
 

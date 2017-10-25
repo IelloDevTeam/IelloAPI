@@ -1,4 +1,11 @@
-
+/**
+ * Parking Validator
+ * ===================
+ * IelloDevTeam
+ * ===================
+ * Funzioni middleware e schemi di validazione, per i vari endpoint
+ * relativi a /parking.
+ */
 var Joi = require('joi');
 
 /** Schema di valizione per query dei parcheggi disponibili **/

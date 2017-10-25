@@ -1,3 +1,11 @@
+/**
+ * Manager API Key
+ * ===================
+ * IelloDevTeam
+ * ===================
+ * Manager per la gestione delle chiavi di autenticazione
+ */
+ 
 let fs = require('fs');
 let uuidv4 = require("uuid/v4");
 let path = require('path');
