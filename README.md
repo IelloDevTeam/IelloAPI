@@ -10,6 +10,29 @@
 2. [Autorizzazione](#autorizzazione)
 3. [Licenza](#licenza)
 
+### Prerequisiti
+Le API sono state sviluppando utilizzando Node.JS, in particolare utilizzando il modulo Express.
+
+È necessario installare sia Node.JS che il package manager npm.
+In quanto viene utilizzato Firebase come database remoto, è necessario anche un'account Firebase e la relative chiave di Amministratore.
+
+### Installazione
+Installazione NodeJS e NPM:
+
+- Effettuare il clone del repository.
+- Installare le dipendenze tramite npm:
+   ````
+   npm install
+   ````
+- Copiare il file di amministratore
+- Avviare la console per la gestione delle chiavi:
+- Da finire..
+- Creare delle nuove chiavi per il ruolo di "admin" e "user".
+- Avviare il server.
+   ````
+   node index.js
+   ````
+   
 Lista API
 ========
 
