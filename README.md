@@ -18,23 +18,29 @@ Questa repository contiene il codice dell'API di Project Iello. Questop consente
 
 Le API sono state sviluppando utilizzando Node.JS, in particolare utilizzando il modulo Express.
 
-È necessario installare sia Node.JS che il package manager npm. In quanto viene utilizzato Firebase come database remoto, è necessario anche un'account Firebase e la relative chiave di Amministratore.
+È necessario installare sia Node.JS che il package manager npm. Inoltre poichè viene utilizzato Firebase come database remoto per la sua scalabilità, è necessario anche un'account Firebase e la relative chiave di Amministratore.
 
 Installazione NodeJS e NPM:
 
 1. Effettuare il clone del repository.
-2. Installare le dipendenze tramite npm:
+2. Posizionarsi all'interno della cartella IelloAPI
+3. Installare le dipendenze tramite npm:
    ````
    npm install
    ````
-3. Copiare il file di amministratore
-4. Avviare la console per la gestione delle chiavi:
-5. Da finire..
-6. Creare delle nuove chiavi per il ruolo di "admin" e "user".
-6. Avviare il server.
+4. Copiare il file contenten la chiave di amministratore di Firebase
+5. Avviare la console per la gestione delle chiavi:
+   ````
+   node authconsole.js
+   ````
+6. Selezionare l'opzione 2, per creare delle nuove chiavi per il ruolo di "admin" e "user".
+7. Quando richiesto il nome del ruolo inserite "admin". 
+8. Ripetere il passo 6 e 7 per generare una chiave utente, inserendo questa volta il ruolo "user".
+9. Avviare il server.
    ````
    node index.js
    ````
+10. Ora è possibile fare richieste al server, ricordando di utilizzare quando richiesto le chiavi di autenticazione.
    
 ## Lista API ##
 

@@ -37,10 +37,11 @@ exports.addNewApiKey = function(role)
 
 	// genero nuova chiave per quel ruolo.
 	let newKey = uuidv4();
-	apikeys[(newKey.replace('-', ''))] = role;
+	let cleanKey = newKey.split('-').join('');
+	apikeys[cleanKey] = role;
 	writeJson(apikeys);
 
-	return newKey;
+	return cleanKey;
 }
 
 exports.getKeysRole = function()
@@ -50,6 +51,11 @@ exports.getKeysRole = function()
 
 function readFromJson()
 {
+	if(!fs.existsSync(path.join(__dirname, '../config/keys.json')))
+	{
+		// Creo nuovo file
+		fs.writeFileSync(path.join(__dirname, '../config/keys.json'), "{}", "UTF-8");
+	}
 	return require('../config/keys.json');
 }
 

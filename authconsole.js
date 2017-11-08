@@ -18,7 +18,6 @@ function showMainMenu(){
 		"Main Menu\n\n" + 
 		"1. Show API Key\n" + 
 		"2. Generate new key\n" + 
-		"3. Refresh existing key\n" +
 		"0. Exit\n"
 		);
 
