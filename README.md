@@ -1,50 +1,52 @@
-<h1>Documentazione API IELLO</h1>
-<img src="https://raw.githubusercontent.com/IelloDevTeam/IelloAPI/master/iello_logo.png" alt="" />
+# IelloAPI #
 
-## Indice contenuti
-1. Lista API
-    * [GET: /parking](#get-parking)
-    * [POST: /parking](#post-parking)
-    * [DELETE: /parking](#parkingid)
-    * [POST: /parking/report](#parkingreport)
-2. [Autorizzazione](#autorizzazione)
-3. [Licenza](#licenza)
+Questa repository contiene il codice dell'API di Project Iello. Questop consente agli sviluppatori di accedere a funzioni molto utili per l'interrogazione del database remodo del progetto, implementato tramite Firebase Database. L'utilizzo dell'API aggiunge delle funzionalità molto utili per accedere ai dati in modo più facile e sicuti.
 
-### Prerequisiti
+## Indice contenuti ##
+* [Prerequisiti](#prerequisiti)
+* [Lista API](#lista-api)
+  * [GET: /parking](#get-parking)
+  * [POST: /parking](#post-parking)
+  * [DELETE: /parking/{:id}](#delete-parking-id)
+  * [POST: /parking/report](#post-parking-report)
+* [Autorizzazione](#autorizzazione)
+* [Licenza](#licenza)
+* [Contatti & Credits](#contatti--credits)
+
+
+## Prerequisiti ##
+
 Le API sono state sviluppando utilizzando Node.JS, in particolare utilizzando il modulo Express.
 
-È necessario installare sia Node.JS che il package manager npm.
-In quanto viene utilizzato Firebase come database remoto, è necessario anche un'account Firebase e la relative chiave di Amministratore.
+È necessario installare sia Node.JS che il package manager npm. In quanto viene utilizzato Firebase come database remoto, è necessario anche un'account Firebase e la relative chiave di Amministratore.
 
-### Installazione
 Installazione NodeJS e NPM:
 
-- Effettuare il clone del repository.
-- Installare le dipendenze tramite npm:
+1. Effettuare il clone del repository.
+2. Installare le dipendenze tramite npm:
    ````
    npm install
    ````
-- Copiare il file di amministratore
-- Avviare la console per la gestione delle chiavi:
-- Da finire..
-- Creare delle nuove chiavi per il ruolo di "admin" e "user".
-- Avviare il server.
+3. Copiare il file di amministratore
+4. Avviare la console per la gestione delle chiavi:
+5. Da finire..
+6. Creare delle nuove chiavi per il ruolo di "admin" e "user".
+6. Avviare il server.
    ````
    node index.js
    ````
    
-Lista API
-========
+## Lista API ##
 
-/parking
---------
+### /parking ###
 
 | URI | Http Method  | Description                                                             |
 |-------------|----------|-------------------------------------------------------------------------|
 | /parking         | GET | Restituisce i parcheggi trovati in base alla propria posizione inviata. |
 | /parking         | POST | Aggiunge un nuovo parcheggio. |
 
-#### GET: /parking
+
+#### GET: /parking ####
 
 | Field     | Type    | Required  | Description                                       | Default Value |
 |-----------|---------|-----------|---------------------------------------------------|---------------|
@@ -206,8 +208,7 @@ Il server non riesce ad associare un indirizzo valido alla posizione del parcheg
 }
 ````
 
-/parking/{:id}
---------
+#### DELETE: /parking/{:id} ####
 Permette l'eliminazione di un parcheggio esistente. È necessaria una chiave di autenticazione riservata agli amministratori.
 
 | URI | Http Method  | Description                                                             |
@@ -242,8 +243,8 @@ Connection: keep-alive
 ````
 
 
-/parking/report
---------
+#### POST: /parking/report
+
 Permette di segnalare un parcheggio, la differenza con la creazione di un parcheggio è che la segnalazione non aggiunge direttamente il parcheggio alla piattaforma, inoltre in questo caso è richiesta un'autenticazione "utente", nel caso della creazione è necessaria un'autenticazione "admin".
 
 | URI | Http Method  | Description                                                             |
@@ -252,7 +253,9 @@ Permette di segnalare un parcheggio, la differenza con la creazione di un parche
 
 <strong>Il corpo della richiesta e l'esecuzione della richiesta sono identici alla creazione di un nuovo parcheggio. </strong>
 
-### Autorizzazione
+
+## Autorizzazione
+
 Alcune richieste necessitano di autenticazione tramite una chiave, inviata tramite l'header http "Authorization".
 Il server risponde nei seguenti modi in caso di problemi di autorizzazione.
 
@@ -290,8 +293,8 @@ Connection: keep-alive
 }
 ````
 
-Licenza
---------
+## Licenza ##
+
 MIT License
 
 Copyright (c) 2017 IelloDevTeam
@@ -314,4 +317,5 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
-
+## Contatti & Credits ##
+App realizzata come parte di un progetto di esame (PDGT) da [Riccardo Maldini](https://github.com/maldins46), [Andrea Petreti](https://github.com/petretiandrea), [Alessia Ventani](https://github.com/AlessiaVe) e [Elia Trufelli](https://github.com/EliaT95).
