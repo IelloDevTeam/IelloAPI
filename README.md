@@ -286,7 +286,7 @@ Connection: keep-alive
 }
 ````
 
-**In caso di autenticazione non riuscita, o nel caso in cui non si dispongano dei permessi sufficenti per effettuare l'operazione, il server risponde nel seguente modo:**
+**In caso di autenticazione non riuscita, o nel caso in cui non si dispongano dei permessi sufficienti per effettuare l'operazione, il server risponde nel seguente modo:**
 ````
 HTTP/1.1 403 Forbidden
 X-Powered-By: Express
