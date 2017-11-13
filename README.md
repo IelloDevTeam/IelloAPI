@@ -1,6 +1,6 @@
 # IelloAPI #
 
-Questa repository contiene il codice dell'API di Project Iello. L'API consente agli sviluppatori di accedere a funzioni molto utili per l'interrogazione del database remodo del progetto, implementato tramite il servizio Google per sviluppatori [Firebase Database](https://firebase.google.com/docs/database/). L'utilizzo dell'API aggiunge delle funzionalità molto utili agli sviluppatori interessati alla consultazione delle informazioni raccolte, per accedere ai dati in modo più facile e sicuro.
+Questa repository contiene il codice dell'API di [Project Iello](https://prezi.com/p/bkqagzs4v_w5/). L'API consente agli sviluppatori di accedere a funzioni molto utili per l'interrogazione del database remodo del progetto, implementato tramite il servizio Google per sviluppatori [Firebase Database](https://firebase.google.com/docs/database/). L'utilizzo dell'API aggiunge delle funzionalità molto utili agli sviluppatori interessati alla consultazione delle informazioni raccolte, per accedere ai dati in modo più facile e sicuro.
 
 
 ## Indice contenuti ##
