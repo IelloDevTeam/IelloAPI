@@ -1,6 +1,6 @@
 # IelloAPI #
 
-Questa repository contiene il codice dell'API di [Project Iello](https://prezi.com/p/bkqagzs4v_w5/). L'API consente agli sviluppatori di accedere a funzioni molto utili per l'interrogazione del database remodo del progetto, implementato tramite il servizio Google per sviluppatori [Firebase Database](https://firebase.google.com/docs/database/). L'utilizzo dell'API aggiunge delle funzionalità molto utili agli sviluppatori interessati alla consultazione delle informazioni raccolte, per accedere ai dati in modo più facile e sicuro.
+Questa repository contiene il codice dell'API di [Project Iello](https://prezi.com/p/bkqagzs4v_w5/). L'API consente agli sviluppatori di accedere a funzioni molto utili per l'interrogazione del database remoto del progetto, implementato tramite il servizio Google per sviluppatori [Firebase Database](https://firebase.google.com/docs/database/). L'utilizzo dell'API aggiunge delle funzionalità molto utili agli sviluppatori interessati alla consultazione delle informazioni raccolte, per accedere ai dati in modo più facile e sicuro.
 
 
 ## Indice contenuti ##
@@ -31,7 +31,7 @@ Installazione NodeJS e NPM:
    ````
    npm install
    ````
-4. Copiare il file contenten la chiave di amministratore di Firebase
+4. Copiare il file contenente la chiave di amministratore di Firebase
 5. Avviare la console per la gestione delle chiavi:
    ````
    node authconsole.js
@@ -190,7 +190,7 @@ Connection: keep-alive
 }
 ````
 
-In caso di errore il server risponde nei seguenti modi, rispettivamente quando il corpo della richiesta non è valido, quando fallisce il caricamento di nuovo parcheggio, e quando non riesce ad identificare un'indirizzo valido per le coordinate del parcheggio inviato.
+In caso di errore il server risponde nei seguenti modi, rispettivamente quando il corpo della richiesta non è valido, quando fallisce il caricamento di nuovo parcheggio e quando non riesce ad identificare un indirizzo valido per le coordinate del parcheggio inviato.
 ````
 HTTP/1.1 500
 ````
@@ -255,7 +255,7 @@ Connection: keep-alive
 
 #### POST: /parking/report
 
-Permette di segnalare un parcheggio, la differenza con la creazione di un parcheggio è che la segnalazione non aggiunge direttamente il parcheggio alla piattaforma, inoltre in questo caso è richiesta un'autenticazione "utente", nel caso della creazione è necessaria un'autenticazione "admin".
+Permette di segnalare un parcheggio- La differenza con la creazione di un parcheggio è che la segnalazione non aggiunge direttamente il parcheggio alla piattaforma, inoltre in questo caso è richiesta un'autenticazione "utente", nel caso della creazione è necessaria un'autenticazione "admin".
 
 | URI | Http Method  | Description                                                             |
 |-------------|----------|-------------------------------------------------------------------------|
@@ -330,4 +330,4 @@ SOFTWARE.
 
 
 ## Contatti & Credits ##
-App realizzata come parte di un progetto di esame (PDGT) da [Riccardo Maldini](https://github.com/maldins46), [Andrea Petreti](https://github.com/petretiandrea), [Alessia Ventani](https://github.com/AlessiaVe) e [Elia Trufelli](https://github.com/EliaT95).
+API realizzata come parte di un progetto di esame (PDGT) da [Riccardo Maldini](https://github.com/maldins46), [Andrea Petreti](https://github.com/petretiandrea), [Alessia Ventani](https://github.com/AlessiaVe) e [Elia Trufelli](https://github.com/EliaT95).
