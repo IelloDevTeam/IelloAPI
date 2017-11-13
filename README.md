@@ -1,6 +1,7 @@
 # IelloAPI #
 
-Questa repository contiene il codice dell'API di Project Iello. Questop consente agli sviluppatori di accedere a funzioni molto utili per l'interrogazione del database remodo del progetto, implementato tramite Firebase Database. L'utilizzo dell'API aggiunge delle funzionalità molto utili per accedere ai dati in modo più facile e sicuti.
+Questa repository contiene il codice dell'API di Project Iello. L'API consente agli sviluppatori di accedere a funzioni molto utili per l'interrogazione del database remodo del progetto, implementato tramite il servizio Google per sviluppatori [Firebase Database](https://firebase.google.com/docs/database/). L'utilizzo dell'API aggiunge delle funzionalità molto utili agli sviluppatori interessati alla consultazione delle informazioni raccolte, per accedere ai dati in modo più facile e sicuro.
+
 
 ## Indice contenuti ##
 * [Prerequisiti](#prerequisiti)
@@ -16,9 +17,11 @@ Questa repository contiene il codice dell'API di Project Iello. Questop consente
 
 ## Prerequisiti ##
 
-Le API sono state sviluppando utilizzando Node.JS, in particolare utilizzando il modulo Express.
+Questo paragrafo illustra con quali strumenti è stata sviluppata e messa in funzione le API, fornendo un algoritmo per poterla eventualmente replicare.
 
-È necessario installare sia Node.JS che il package manager npm. Inoltre poichè viene utilizzato Firebase come database remoto per la sua scalabilità, è necessario anche un'account Firebase e la relative chiave di Amministratore.
+Le API sono state sviluppando utilizzando [Node.JS](https://nodejs.org/it/), in particolare utilizzando il [modulo Express](http://expressjs.com/it/). È necessario installare sia Node.JS che il [package manager npm](https://www.npmjs.com/). 
+
+Il database è stato implementato tramite il servizio [Google Firebase Database](https://firebase.google.com/docs/database/). Il servizio fornisce un database JSON remoto, molto utile soprattutto in quanto scalabile a seconda delle esigenze.
 
 Installazione NodeJS e NPM:
 
@@ -41,6 +44,7 @@ Installazione NodeJS e NPM:
    node index.js
    ````
 10. Ora è possibile fare richieste al server, ricordando di utilizzare quando richiesto le chiavi di autenticazione.
+   
    
 ## Lista API ##
 
@@ -299,6 +303,7 @@ Connection: keep-alive
 }
 ````
 
+
 ## Licenza ##
 
 MIT License
@@ -322,6 +327,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
 
 ## Contatti & Credits ##
 App realizzata come parte di un progetto di esame (PDGT) da [Riccardo Maldini](https://github.com/maldins46), [Andrea Petreti](https://github.com/petretiandrea), [Alessia Ventani](https://github.com/AlessiaVe) e [Elia Trufelli](https://github.com/EliaT95).
